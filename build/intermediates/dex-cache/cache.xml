@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/exploded-aar/com.mcxiaoke.volley/android-volley-master/1.0.19/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b69cb861b1593a5839637abc6e307561e72e4e46">
+        <dex dex="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/pre-dexed/debug/classes-c6177e418bc25b99bd96e4e476416986e92f3252.jar" />
+    </item>
+    <item
+        jar="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/pre-dexed/debug/classes-b6a5ecac9c902cec0930d20f90676f65a30845df.jar" />
+    </item>
+    <item
+        jar="/users/ugrad/chenx4/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.8.2/d27c24204c5e507b16fec01006b3d0f1ec42aed4/joda-time-2.8.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d27c24204c5e507b16fec01006b3d0f1ec42aed4">
+        <dex dex="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/pre-dexed/debug/joda-time-2.8.2-e24c51bd901eb69145508026cc45ee50884cd892.jar" />
+    </item>
+    <item
+        jar="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/pre-dexed/debug/classes-e4fcb0290e769e06cbf4baee0f9cfc0838653973.jar" />
+    </item>
+    <item
+        jar="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-84319b2a04669c6120d0e1b763bbb00f51026c08.jar" />
+    </item>
+    <item
+        jar="/opt/android-sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-55544acaf7567404cc89c13faa7d16877bb6a718.jar" />
+    </item>
+    <item
+        jar="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="/users/ugrad/chenx4/Desktop/Android-master/app/build/intermediates/pre-dexed/debug/classes-d851456f6a06d3744ff9746c37a81f6cf38b8557.jar" />
+    </item>
+
+</items>
