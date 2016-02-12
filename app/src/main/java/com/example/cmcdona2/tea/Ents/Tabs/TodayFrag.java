@@ -46,9 +46,9 @@ public class TodayFrag extends android.support.v4.app.Fragment {
         EntsAdapter adapter;
         final ListView listView;
         listView = (ListView) v.findViewById(R.id.list_view);
-        adapter = new EntsAdapter(this.getContext(), R.layout.ent_item);
+        adapter = new EntsAdapter();
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.activity_main_swipe_refresh_layout);
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
 
         String activeIDs;
         final SharedPreferences appPrefs = this.getActivity().getSharedPreferences("appPrefs", 0);
@@ -102,7 +102,7 @@ public class TodayFrag extends android.support.v4.app.Fragment {
             bm = BitmapFactory.decodeByteArray(data, 0, data.length);
 
             EntItem dataProvider = new EntItem(bm, eventName[i], eventTimings[i]);
-            adapter.add(dataProvider);
+            //adapter.add(dataProvider);
         }
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

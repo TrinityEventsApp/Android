@@ -16,6 +16,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +25,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -67,7 +70,7 @@ public class EntsActivity extends ActionBarActivity implements ActionBar.TabList
     public String[] imageTemp;
     public int numSocs;
     public ActionBar actionBar;
-    private ListView listView;
+    private RecyclerView listView;
     private DrawerLayout drawerLayout;
 
 
@@ -87,9 +90,10 @@ public class EntsActivity extends ActionBarActivity implements ActionBar.TabList
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         String[] socs = getResources().getStringArray(R.array.societies);
-        listView = (ListView) findViewById(R.id.drawer_list);
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, socs));
-        listView.setOnItemClickListener(this);
+        RecyclerView listView = (RecyclerView) findViewById(R.id.list_view);
+        //listView.setAdapter(new EntsAdapter());
+        //listView.setOnClickListener();
+        EntsAdapter adapter = new EntsAdapter();
 
         actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

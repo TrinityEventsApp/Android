@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.FrameLayout;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.cmcdona2.tea.Ents.EntItem;
 import com.example.cmcdona2.tea.Ents.EntsActivity;
@@ -51,9 +54,9 @@ public class LaterFrag extends android.support.v4.app.Fragment {
         EntsAdapter adapter;
         ListView listView;
         listView = (ListView) v.findViewById(R.id.list_view);
-        adapter = new EntsAdapter(this.getContext(), R.layout.ent_item);
+        adapter = new EntsAdapter();
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.activity_main_swipe_refresh_layout);
-        listView.setAdapter(adapter);
+        //CardView.setAdapter(adapter);
 
         String loadedID;
         final SharedPreferences appPrefs = this.getActivity().getSharedPreferences("appPrefs", 0);
@@ -108,7 +111,7 @@ public class LaterFrag extends android.support.v4.app.Fragment {
             bm = BitmapFactory.decodeByteArray(eventsData, 0, eventsData.length);
 
             EntItem dataProvider = new EntItem(bm, eventName[i], eventTimes[i]);
-            adapter.add(dataProvider);
+            //adapter.add(dataProvider);
         }
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
