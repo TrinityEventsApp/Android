@@ -2,11 +2,53 @@
 <items version="2" >
 
     <item
-        jar="/Users/colinmcdonagh/Desktop/Android/app/build/intermediates/exploded-aar/com.mcxiaoke.volley/android-volley-master/1.0.19/jars/classes.jar"
+        jar="C:\Users\Eoin\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.8.2\d27c24204c5e507b16fec01006b3d0f1ec42aed4\joda-time-2.8.2.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="6d8ffcbd64ba3441381659c9a904660096bfb83e">
-        <dex dex="/Users/colinmcdonagh/Desktop/Android/app/build/intermediates/pre-dexed/release/classes-f4db26dc3a69bde2b88ed739e222177547f9e65c.jar" />
+        sha1="d27c24204c5e507b16fec01006b3d0f1ec42aed4">
+        <dex dex="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\pre-dexed\debug\joda-time-2.8.2-df50dc3af03fd4b8825627e497da50cb243ab85b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\pre-dexed\debug\classes-2c3c86f1289974c59b2d32afead5757bb743f1b8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-73c24caa37adc15bba1cb80e1b8b9d34ee246563.jar" />
+    </item>
+    <item
+        jar="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\exploded-aar\com.mcxiaoke.volley\android-volley-master\1.0.19\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="7b294c8933be2545c24a4368537f36f431ef23c5">
+        <dex dex="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\pre-dexed\debug\classes-ca4fa93f1b866deef3106145d4964def22f5d8c4.jar" />
+    </item>
+    <item
+        jar="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\pre-dexed\debug\classes-e1a9289019bbcc5a353e340fc0f0296775860080.jar" />
+    </item>
+    <item
+        jar="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\pre-dexed\debug\classes-1827bcf58163333b2f0142d82870da2d2d59d81a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Eoin\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\Eoin\Downloads\teaapp\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-b1ef9e14aa12009e2862a40cafe9244b8a31d51e.jar" />
     </item>
 
 </items>
