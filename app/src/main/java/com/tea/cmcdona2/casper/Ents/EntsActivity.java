@@ -23,11 +23,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD:app/src/main/java/com/example/cmcdona2/tea/Ents/EntsActivity.java
+
 import android.view.ViewGroup;
 import android.widget.Adapter;
-=======
->>>>>>> master:app/src/main/java/com/tea/cmcdona2/casper/Ents/EntsActivity.java
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -75,6 +74,7 @@ public class EntsActivity extends ActionBarActivity implements ActionBar.TabList
     public int numSocs;
     public ActionBar actionBar;
     private RecyclerView listView;
+    private RecyclerView.Adapter EntsAdapter;
     private DrawerLayout drawerLayout;
     public Toolbar toolbar;
 
@@ -85,6 +85,8 @@ public class EntsActivity extends ActionBarActivity implements ActionBar.TabList
 
         setContentView(R.layout.ents_to_frags);
         SocsActivity.SocsActivity.finish();
+
+        listView = (RecyclerView) findViewById(R.id.recyclerView);
 
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //Toolbar will now take on default Action Bar characteristics
@@ -104,10 +106,10 @@ public class EntsActivity extends ActionBarActivity implements ActionBar.TabList
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         String[] socs = getResources().getStringArray(R.array.societies);
-        RecyclerView listView = (RecyclerView) findViewById(R.id.list_view);
-        //listView.setAdapter(new EntsAdapter());
+        RecyclerView listView = (RecyclerView) findViewById(R.id.drawerlayout);
+        listView.setAdapter(new EntsAdapter());
         //listView.setOnClickListener();
-        EntsAdapter adapter = new EntsAdapter();
+        //EntsAdapter adapter = new EntsAdapter();
 
         actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

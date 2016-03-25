@@ -53,10 +53,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         press.setOnClickListener(this);
         reglink.setOnClickListener(this);
 
-        email = etEmail.getText().toString().trim();
-        password = etPassword.getText().toString().trim();
-        encryptedEmail = md5(email);
-        encryptedPassword = md5(password);
+
         //databaseHelper = new DatabaseHelper(this);
         //localUserHelper = new LocalUserHelper(this);
     }
@@ -64,6 +61,12 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+
+        email = etEmail.getText().toString().trim();
+        password = etPassword.getText().toString().trim();
+        encryptedEmail = md5(email);
+        encryptedPassword = md5(password);
+
         switch (view.getId()) {
             case R.id.thing:
 
@@ -83,6 +86,8 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
 
 
                 }
+
+                break;
 
 
             case R.id.tvRegisterLink:

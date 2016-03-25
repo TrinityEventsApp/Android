@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.tea.cmcdona2.casper.R;
 
-import com.example.cmcdona2.tea.R;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,5 +108,5 @@ public class EntsAdapter extends RecyclerView.Adapter<EntsAdapter.DataHandler> {
         return row;
 
     }
-    */
+  */
 }

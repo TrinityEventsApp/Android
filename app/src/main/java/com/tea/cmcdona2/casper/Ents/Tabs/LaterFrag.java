@@ -12,13 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-<<<<<<< HEAD:app/src/main/java/com/example/cmcdona2/tea/Ents/Tabs/LaterFrag.java
 import android.widget.FrameLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-=======
+
 import android.widget.Toast;
->>>>>>> master:app/src/main/java/com/tea/cmcdona2/casper/Ents/Tabs/LaterFrag.java
+
 
 import com.tea.cmcdona2.casper.Ents.EntItem;
 import com.tea.cmcdona2.casper.Ents.EntsAdapter;
@@ -56,16 +55,12 @@ public class LaterFrag extends android.support.v4.app.Fragment {
         EntsAdapter adapter;
         ListView listView;
         listView = (ListView) v.findViewById(R.id.list_view);
-<<<<<<< HEAD:app/src/main/java/com/example/cmcdona2/tea/Ents/Tabs/LaterFrag.java
-        adapter = new EntsAdapter();
-        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.activity_main_swipe_refresh_layout);
-        //CardView.setAdapter(adapter);
-=======
-        listView.setEmptyView(v.findViewById(R.id.empty_list_item));
-        adapter = new EntsAdapter(this.getContext(), R.layout.ent_item);
 
-        listView.setAdapter(adapter);
->>>>>>> master:app/src/main/java/com/tea/cmcdona2/casper/Ents/Tabs/LaterFrag.java
+        listView.setEmptyView(v.findViewById(R.id.empty_list_item));
+        adapter = new EntsAdapter();
+
+
+
 
         String loadedID;
         final SharedPreferences appPrefs = this.getActivity().getSharedPreferences("appPrefs", 0);
@@ -131,13 +126,10 @@ public class LaterFrag extends android.support.v4.app.Fragment {
             eventsData = Base64.decode(imageTemp[i], Base64.DEFAULT);
             bm = BitmapFactory.decodeByteArray(eventsData, 0, eventsData.length);
 
-<<<<<<< HEAD:app/src/main/java/com/example/cmcdona2/tea/Ents/Tabs/LaterFrag.java
-            EntItem dataProvider = new EntItem(bm, eventName[i], eventTimes[i]);
-            //adapter.add(dataProvider);
-=======
+
             EntItem dataProvider = new EntItem(bm, eventName[i], eventDisplayDates[i] + '\n' + eventDisplayTimes[i]);
-            adapter.add(dataProvider);
->>>>>>> master:app/src/main/java/com/tea/cmcdona2/casper/Ents/Tabs/LaterFrag.java
+
+
         }
 
 

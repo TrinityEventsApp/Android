@@ -46,16 +46,12 @@ public class TodayFrag extends android.support.v4.app.Fragment {
         EntsAdapter adapter;
         final ListView listView;
         listView = (ListView) v.findViewById(R.id.list_view);
-<<<<<<< HEAD:app/src/main/java/com/example/cmcdona2/tea/Ents/Tabs/TodayFrag.java
-        adapter = new EntsAdapter();
-        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.activity_main_swipe_refresh_layout);
-        //listView.setAdapter(adapter);
-=======
-        listView.setEmptyView(v.findViewById(R.id.empty_list_item));
-        adapter = new EntsAdapter(this.getContext(), R.layout.ent_item);
 
-        listView.setAdapter(adapter);
->>>>>>> master:app/src/main/java/com/tea/cmcdona2/casper/Ents/Tabs/TodayFrag.java
+        listView.setEmptyView(v.findViewById(R.id.empty_list_item));
+        adapter = new EntsAdapter();
+
+
+
 
         String activeIDs;
         final SharedPreferences appPrefs = this.getActivity().getSharedPreferences("appPrefs", 0);
@@ -121,13 +117,10 @@ public class TodayFrag extends android.support.v4.app.Fragment {
             data = Base64.decode(imageTemp[i], Base64.DEFAULT);
             bm = BitmapFactory.decodeByteArray(data, 0, data.length);
 
-<<<<<<< HEAD:app/src/main/java/com/example/cmcdona2/tea/Ents/Tabs/TodayFrag.java
-            EntItem dataProvider = new EntItem(bm, eventName[i], eventTimings[i]);
-            //adapter.add(dataProvider);
-=======
+
             EntItem dataProvider = new EntItem(bm, eventName[i], eventDisplayTimes[i]);
-            adapter.add(dataProvider);
->>>>>>> master:app/src/main/java/com/tea/cmcdona2/casper/Ents/Tabs/TodayFrag.java
+
+
         }
 
 
