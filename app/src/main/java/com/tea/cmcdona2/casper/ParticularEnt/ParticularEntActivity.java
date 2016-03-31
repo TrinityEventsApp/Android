@@ -1,4 +1,6 @@
 package com.tea.cmcdona2.casper.ParticularEnt;
+
+import android.support.v7.app.ActionBar;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toolbar;
 import com.tea.cmcdona2.casper.R;
 
@@ -32,6 +35,9 @@ public class ParticularEntActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
@@ -78,6 +84,18 @@ public class ParticularEntActivity extends AppCompatActivity{
             int swipePosition = getIntent().getIntExtra("swipePosition",0);
             count = count - swipePosition;
             return count;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

@@ -2,53 +2,53 @@
 <items version="2" >
 
     <item
-        jar="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jar="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/pre-dexed/debug/classes-30865b63f9c359517fe62a6a0b0322ffed188969.jar" />
+        <dex dex="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\pre-dexed\debug\classes-b53c84fcfaae841d55f8d5ce36d572c4000aa4dc.jar" />
     </item>
     <item
-        jar="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/exploded-aar/com.mcxiaoke.volley/android-volley-master/1.0.19/jars/classes.jar"
+        jar="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\exploded-aar\com.mcxiaoke.volley\android-volley-master\1.0.19\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="de50d830f3281a9a3a0e1aebf821600891062600">
-        <dex dex="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/pre-dexed/debug/classes-195d7e4b9bb8cc98cbca81d48bd56a29f9611139.jar" />
+        sha1="56aed4ed9d9732450b082dde46c6c1ff57a16e68">
+        <dex dex="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\pre-dexed\debug\classes-c8fb1565c88dc538a762072749c4875078b0ddbb.jar" />
     </item>
     <item
-        jar="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-6887530d996ecb406404a12ae3a76dafb8466265.jar" />
-    </item>
-    <item
-        jar="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
-        <dex dex="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/pre-dexed/debug/classes-dfd4be17d45b1fef674f9da939df463f4bb5bca3.jar" />
-    </item>
-    <item
-        jar="/Users/colinmcdonagh/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-029920c85c71a3e8813a89d85da8ac04924582ed.jar" />
-    </item>
-    <item
-        jar="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jar="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/pre-dexed/debug/classes-27921b8ef480a815f2ae958b77fd59719970339c.jar" />
+        <dex dex="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\pre-dexed\debug\classes-ebaaa23fc583e68a2ff1f342687038bca4135cbd.jar" />
     </item>
     <item
-        jar="/Users/colinmcdonagh/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.8.2/d27c24204c5e507b16fec01006b3d0f1ec42aed4/joda-time-2.8.2.jar"
+        jar="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-170a49771ca50e0dd80427b29102d053ee4c1c75.jar" />
+    </item>
+    <item
+        jar="C:\Users\JamieH\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-f8b2d8344d15084a15888823f02d1a9a682b0621.jar" />
+    </item>
+    <item
+        jar="C:\Users\JamieH\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.8.2\d27c24204c5e507b16fec01006b3d0f1ec42aed4\joda-time-2.8.2.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="d27c24204c5e507b16fec01006b3d0f1ec42aed4">
-        <dex dex="/Users/colinmcdonagh/Desktop/offline/app/build/intermediates/pre-dexed/debug/joda-time-2.8.2-5d974010c3c71053d85e513d67fa371f9fcfbb97.jar" />
+        <dex dex="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\pre-dexed\debug\joda-time-2.8.2-ac3a12ef0df3366003b52494b78f3b47d714806b.jar" />
+    </item>
+    <item
+        jar="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="C:\Users\JamieH\Documents\College\3rd Year\C3D5B\Casper 2\app\build\intermediates\pre-dexed\debug\classes-3bb911ca24c36e831cddae56f8cf0048699e6718.jar" />
     </item>
 
 </items>
