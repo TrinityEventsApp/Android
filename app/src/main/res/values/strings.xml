@@ -4,10 +4,14 @@
     <string name="text2">Fragment2</string>
     <string name="title_section1">Today</string>
     <string name="title_section2">Tomorrow</string>
-    <string name="title_section3">Week</string>
+    <string name="title_section3">Later</string>
     <string-array name="societies">
 
-        <item>Societies</item>
+        <item>My Societies</item>
+
+        <item>All Societies</item>
+
+        <item>Particular Society</item>
 
         <item>Preferences</item>
 
@@ -18,15 +22,5 @@
     <string name="action_logout">Logout</string>
     <string name="action_search">Search</string>
     <string name="action_refresh">Refresh</string>
-    <string name="noEvents">"No Events to show</string>
-    <string name="title_activity_log_in">LogIn</string>
-    <string name="title_activity_register">Register</string>
-    <string name="underlinedTextLogIn"><u>Sign Up Here</u></string>
-    <string name="underlinedTextreset"><u>Forgot your password?</u></string>
-    <string name="underlinedTextRegister"><u>Return To Log In</u></string>
-    <string name="title_activity_societyor_student">SocietyorStudent</string>
-    <string name="title_activity_society_register">SocietyRegister</string>
-    <string name="title_activity_reset_password">resetPassword</string>
-    <string name="about"><u>About</u></string>
 
 </resources>

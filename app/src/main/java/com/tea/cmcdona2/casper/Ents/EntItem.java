@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 
 public class EntItem {
 
-
     private Bitmap bi;
     private String events_title;
     private String events_timing;

@@ -5,14 +5,13 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.tea.cmcdona2.casper.Ents.EntItem;
 import com.tea.cmcdona2.casper.Ents.EntsAdapter;
@@ -24,16 +23,11 @@ import org.joda.time.Interval;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Paddy on 03/12/2015.
  */
 
 public class LaterFrag extends android.support.v4.app.Fragment {
-
-    List Ent_Cards;
 
     public static LaterFrag newInstance(String text) {
         LaterFrag fragment = new LaterFrag();
@@ -45,55 +39,42 @@ public class LaterFrag extends android.support.v4.app.Fragment {
     public LaterFrag() {
         // Required empty public constructor
     }
-    int counter1 = 0;
-
-    String loadedID;
-    String[] stringIDs;
-    int numOfEventsPassed;
-    String[] societyName;
-    String[] eventName ;
-    String[] imageTemp ;
-    String[] eventTimes;
-    String[] eventDisplayDates ;
-    String[] eventDisplayTimes ;
-    String[] startTimes ;
-    String[] endTimes ;
-    String[] splitEventIDsAndTimes;
-    String eventIDsAndTimes;
-    String additive;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.card_ents_activity, container, false);
+        View v = inflater.inflate(R.layout.ents_activity, container, false);
+        EntsAdapter adapter;
+        ListView listView;
+        listView = (ListView) v.findViewById(R.id.list_view);
+        adapter = new EntsAdapter(this.getContext(), R.layout.ent_item);
 
-        RecyclerView rv = (RecyclerView)v.findViewById(R.id.rv);
+        listView.setAdapter(adapter);
+
+        String loadedID;
         final SharedPreferences appPrefs = this.getActivity().getSharedPreferences("appPrefs", 0);
         final SharedPreferences.Editor appPrefsEditor = appPrefs.edit();
-         loadedID = appPrefs.getString("IDs", "null");
-         stringIDs = loadedID.split(",");
-         numOfEventsPassed = stringIDs.length;
-        societyName = new String[numOfEventsPassed];
-        eventName = new String[numOfEventsPassed];
-         imageTemp = new String[numOfEventsPassed];
-         eventTimes = new String[numOfEventsPassed];
-         eventDisplayDates = new String[numOfEventsPassed];
-         eventDisplayTimes = new String[numOfEventsPassed];
-         startTimes = new String[numOfEventsPassed];
-         endTimes = new String[numOfEventsPassed];
-
-
+        loadedID = appPrefs.getString("IDs", "null");
+        String[] stringIDs = loadedID.split(",");
+        int numOfEventsPassed = stringIDs.length;
+        String[] societyName = new String[numOfEventsPassed];
+        String[] eventName = new String[numOfEventsPassed];
+        String[] imageTemp = new String[numOfEventsPassed];
+        String[] eventTimes = new String[numOfEventsPassed];
+        String[] eventDisplayDates = new String[numOfEventsPassed];
+        String[] eventDisplayTimes = new String[numOfEventsPassed];
+        String[] startTimes = new String[numOfEventsPassed];
+        String[] endTimes = new String[numOfEventsPassed];
+        String[] splitEventIDsAndTimes;
+        String eventIDsAndTimes;
+        String additive;
         final int[] EventId = new int[numOfEventsPassed];
-        final int[] EventPositions = new int[numOfEventsPassed];
 
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(llm);
+
 
         int counter = 0;
-        int eventPosition = 0;
 
         for (int i = 0; i < numOfEventsPassed; i++) {
 
@@ -123,51 +104,40 @@ public class LaterFrag extends android.support.v4.app.Fragment {
                         eventDisplayTimes[counter] = eventDisplayTimes[counter].split("-")[0];
                     Log.v("displayTime", "" + eventDisplayTimes[counter]);
                     EventId[counter] = Integer.parseInt(stringIDs[i]);
-                    EventPositions[counter] = eventPosition;
-                    Log.v("event_id", ""+EventId);
                     counter++;
                 }
             }
-            eventPosition++;
         }
 
-        counter1 = counter;
 
-        initializeData();
-
-        //Pass filtered IDs to RVAdapter
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < counter1; i++){
-            sb.append(EventId[i]).append(',');
-        }
-
-        //Pass positions
-        StringBuilder sb1 = new StringBuilder();
-        for(int i = 0; i < counter1; i++){
-            sb1.append(EventPositions[i]).append(',');
-        }
-
-        String filteredIds = sb.toString();
-        String eventPositions = sb1.toString();
-
-        RVAdapter RVadapter = new RVAdapter(Ent_Cards, filteredIds, eventPositions);
-        rv.setAdapter(RVadapter);
-
-        return v;
-    }
-
-    public void initializeData() {
-        Ent_Cards = new ArrayList<>();
-
-        for (int i = 0; i < counter1; i++) {
+        for (int i = 0; i < counter; i++) {
             byte[] eventsData;
             Bitmap bm;
 
             eventsData = Base64.decode(imageTemp[i], Base64.DEFAULT);
             bm = BitmapFactory.decodeByteArray(eventsData, 0, eventsData.length);
-            Ent_Cards.add(new Ent_CardItem(eventName[i], eventDisplayDates[i] + '\n' + startTimes[i], bm));
+
+            EntItem dataProvider = new EntItem(bm, eventName[i], eventDisplayDates[i] + '\n' + eventDisplayTimes[i]);
+            adapter.add(dataProvider);
         }
 
+
+
+        listView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long ld) {
+                        String pos = Integer.toString(position);
+                        String Event = String.valueOf(parent.getItemAtPosition(position));
+                        Intent intent = new Intent(getActivity(), ParticularEntActivity.class);
+                        intent.putExtra("Event", Event);
+                        intent.putExtra("ID", EventId[position]);
+                        startActivity(intent);
+                    }
+                }
+        );
+
+        return v;
     }
 
 }

@@ -1,10 +1,6 @@
 package com.tea.cmcdona2.casper.Socs;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -17,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,14 +23,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.tea.cmcdona2.casper.LogReg.LogIn;
 import com.tea.cmcdona2.casper.Other.Constants;
 import com.tea.cmcdona2.casper.Ents.EntsActivity;
 import com.tea.cmcdona2.casper.R;
@@ -55,7 +49,8 @@ public class SocsActivity extends ActionBarActivity {
     public SocsAdapter gridAdapter;
     public ProgressDialog loading;
     public Boolean previouslyLaunched;
-    public Boolean alreadyRegistered;
+    public ArrayList<Integer> activeGridPositions = new ArrayList<Integer>();
+    public ArrayList<String> socNames_active = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,25 +70,19 @@ public class SocsActivity extends ActionBarActivity {
         // actionBar.setIcon(R.drawable.app_icon);
         ActionBar actionBar;
         actionBar = getSupportActionBar();
+        //actionBar.setIcon(R.drawable.app_icon);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
         previouslyLaunched = appPrefs.getBoolean("previouslyLaunched", false);
-        alreadyRegistered = appPrefs.getBoolean("alreadyRegistered", false);
 
         if (fromEntsActivity || !previouslyLaunched) {
 
             if (!fromEntsActivity) {
 
-                //Intent intent = new Intent(SocsActivity.this, SplashActivity.class);
+                Intent intent = new Intent(SocsActivity.this, SplashActivity.class);
                 appPrefsEditor.putBoolean("allSocsFlag", false).commit();
-                //startActivity(intent);
-
-                //if(!alreadyRegistered) {
-                   // Intent loginIntent = new Intent(this, LogIn.class);
-                    //startActivity(loginIntent);
-                //}
-
+                startActivity(intent);
             }
 
             //else fromEntsActivity so no need for splash, then run activity
@@ -101,79 +90,54 @@ public class SocsActivity extends ActionBarActivity {
 
             //after establishing a connection and receiving data, do the following
 
-//            establishConnection(new VolleyCallback() {
-//                @Override
-//                public void handleData(String response) {
-//===============================================File handling===============================================================//
-//-----------------------------------------------Common setup for reading or writing-----------------------------------------//
-            String filename = "getInfo.php";      //what the getEvents.php will be saved as, can be anything
+            establishConnection(new VolleyCallback() {
+                @Override
+                public void handleData(String response) {
 
-            String contents ="";
-            File file;
+                    JSONObject socData;
+                    byte[] data;
+                    Bitmap bitmap;
 
-            file= new File(getApplicationContext().getApplicationContext().getFilesDir(),filename); //This points to the file we will use. It's in the apps directory, should be accessible to all activities. May not exist, so could do with adding code to handle thee file not existing for loading from it.
-//----------------------------------------------------------------------------------------------------------------------------//
-//-----------------------------------------------Writing to the file----------------------------------------------------------//
-/*
                     try {
-                        FileOutputStream outputStream = new FileOutputStream(file);
-                        outputStream.write(response.getBytes()); //write the response string to the file
-                        outputStream.close();
-                    } catch (Exception e) {
-                        //put stuff here for if saving fails
+
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray result = jsonObject.getJSONArray(Constants.JSON_ARRAY);
+                        len = result.length();
+
+                        String[] name = new String[len];
+                        String[] imageTemp = new String[len];
+                        bm = new Bitmap[len];
+                        str = new String[len];
+
+                        appPrefsEditor.putInt("idsActive_size", len).commit();
+
+                        if(previouslyLaunched)    //User has previously launched the app and navigated to EntsActivity - hence, they have selected at least one society
+                            socNames_active = loadArrayList("socNames_active", SocsActivity.this); //Get the names of the societies that the user has previously selected
+
+                        for (int i = 0; i < len; i++) {
+
+                            socData = result.getJSONObject(i);
+                            name[i] = socData.getString(Constants.KEY_NAME);
+                            imageTemp[i] = socData.getString(Constants.KEY_IMAGE);
+                            data = Base64.decode(imageTemp[i], Base64.DEFAULT);
+                            bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                            bm[i] = bitmap;
+                            str[i] = name[i];
+
+                            if(previouslyLaunched)  //User has some active societies
+                            {
+                                //Determine if the grid position corresponding to this society should be active
+                                SharedPreferences appPrefs = SocsActivity.this.getSharedPreferences("appPrefs", 0);
+                                int socNames_active_size = appPrefs.getInt("socNames_active_size", 0);
+                                for(int j = 0; j < socNames_active_size; j++) {
+                                    if(str[i] == socNames_active.get(j))   //The society names for grid position i is one of the user's saved society names
+                                        activeGridPositions.add(i);         //Add grid position i to the ArrayList of active positions
+                                }
+                            }
+                        }
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
-*/
-
-//---------------------------------------------------------------------------------------------------------------------------//
-//------------------------------------------------Reading from the file-----------------------------------------------------//
-            try{
-                int length = (int) file.length();
-                byte[] bytes = new byte[length];
-                FileInputStream in = new FileInputStream(file);
-                try {
-                    in.read(bytes);
-                } finally {
-                    in.close();
-                }
-                contents = new String(bytes);//contents is the same as "response" which we got from the server
-            } catch (Exception e) {
-                //could put stuff here for what to do if loading fails (set a bool loadingFailed=true and display a toast or something)
-                e.printStackTrace();
-            }
-//--------------------------------------------------------------------------------------------------------------------------//
-//==========================================================================================================================//
-            //code from here is the regular stuff loading the JSONObject from contents instread of from response
-            JSONObject socData;
-            byte[] data;
-            Bitmap bitmap;
-
-            try {
-
-                JSONObject jsonObject = new JSONObject(contents);//using contents (from the file) instead of response (from the internet)
-                JSONArray result = jsonObject.getJSONArray(Constants.JSON_ARRAY);
-                len = result.length();
-
-                String[] name = new String[len];
-                String[] imageTemp = new String[len];
-                bm = new Bitmap[len];
-                str = new String[len];
-
-                appPrefsEditor.putInt("idsActive_size", len).commit();
-
-                for (int i = 0; i < len; i++) {
-
-                    socData = result.getJSONObject(i);
-                    name[i] = socData.getString(Constants.KEY_NAME);
-                    imageTemp[i] = socData.getString(Constants.KEY_IMAGE);
-                    data = Base64.decode(imageTemp[i], Base64.DEFAULT);
-                    bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                    bm[i] = bitmap;
-                    str[i] = name[i];
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
                     idsActive = new boolean[len];
 
@@ -187,6 +151,15 @@ public class SocsActivity extends ActionBarActivity {
                         idsActive = loadArray("idsActive", SocsActivity.this);
                     }
 
+                    int num_active_socs = 0;
+                    for(int i = 0; i < len; i++)
+                    {
+                        if(idsActive[i])
+                            num_active_socs++;
+                    }
+                    appPrefsEditor.putInt("socNames_active_size", num_active_socs).commit();
+
+
                     gridView = (GridView) findViewById(R.id.gridView);
                     gridAdapter = new SocsAdapter(SocsActivity.this, R.layout.soc_item, getSocItems());
                     gridView.setAdapter(gridAdapter);
@@ -194,23 +167,36 @@ public class SocsActivity extends ActionBarActivity {
                     gridView.setOnItemClickListener(new OnItemClickListener() {
                         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
-                            Integer i = (int) (long) id;
+                            ArrayList<SocItem> socItems = new ArrayList<SocItem>();
+                            socItems = getSocItems();
 
-                            //Toast.makeText(SocsActivity.this, ""+position, Toast.LENGTH_LONG).show();
+                            SocItem item = socItems.get(position);
+                            String socName = item.getTitle();
+
+                            Integer i = (int) (long) id;
 
                             if (v.isActivated()) {
                                 v.setActivated(false);
                                 idsActive[i] = false;
+                                socNames_active.remove(socName);
+                                activeGridPositions.remove(new Integer(position));
+                                Toast.makeText(SocsActivity.this, "Removed " + socName, Toast.LENGTH_SHORT).show();
                             } else {
                                 v.setActivated(true);
                                 idsActive[i] = true;
+                                socNames_active.add(socName);
+                                activeGridPositions.add(position);
+                                Toast.makeText(SocsActivity.this, "Added " + socName, Toast.LENGTH_SHORT).show();
                             }
 
                             storeArray(idsActive, "idsActive", SocsActivity.this);
+                            storeArrayList(activeGridPositions, "activeGridPositions", SocsActivity.this);
+                            storeArrayList_String(socNames_active, "socNames_active", SocsActivity.this);
                         }
                     });
 
-
+                }
+            });
 
             appPrefsEditor.putBoolean("fromEntsActivity", false);
             appPrefsEditor.commit();
@@ -287,27 +273,6 @@ public class SocsActivity extends ActionBarActivity {
 
     public void tickOnClickCallback() {
 
-        String subs = booleanArrayToString(idsActive);
-
-        StringBuilder sb1 = new StringBuilder();
-        sb1.append("");
-
-
-
-        sb1.append(subs);
-        String subbys = sb1.toString();
-
-
-
-        SharedPreferences appPrefs1 = SocsActivity.this.getSharedPreferences("appPrefs", 0);
-        final SharedPreferences.Editor appPrefsEditor1 = appPrefs1.edit();
-        String subscriptions = subbys;
-        appPrefsEditor1.putString("subbys", subscriptions).commit();
-
-        sendSubs(subscriptions);
-
-
-
         Intent intent = new Intent(SocsActivity.this, EntsActivity.class);
 
         SharedPreferences appPrefs = SocsActivity.this.getSharedPreferences("appPrefs", 0);
@@ -366,66 +331,37 @@ public class SocsActivity extends ActionBarActivity {
         return array;
     }
 
-    public String booleanArrayToString (boolean array[]){
-        String n;
-        len = array.length;
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("");
-
-        for (int i = 0; i < len; i++) {
-            if(array[i]) {
-                stringBuilder.append("1");
-            }
-            else stringBuilder.append("0");
+    //Function for loading
+    public boolean storeArrayList(ArrayList<Integer> arrayList, String arrayName, Context mContext) {
+        SharedPreferences prefs = mContext.getSharedPreferences("appPrefs", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(arrayName + "_size", arrayList.size());
+        for (int i = 0; i < arrayList.size(); i++)  //Iterate through the ArrayList
+        {
+            editor.putInt(arrayName + "_" + i, arrayList.get(i));  //Store all of the strings from the ArrayList
         }
-
-        n = stringBuilder.toString();
-        return n;
+        return editor.commit();
     }
 
-    private void sendSubs(String subos) {
-        //email = etEmail.getText().toString().trim();
-        //password = etPassword.getText().toString().trim();
-        SharedPreferences appPrefs = SocsActivity.this.getSharedPreferences("appPrefs", 0);
-        final SharedPreferences.Editor appPrefsEditor = appPrefs.edit();
-
-        final String email = appPrefs.getString("loggedInUser", "NULL");
-        final String subs = subos;
-        //final String email = "tester";
-        //final String subs = "tester";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.SUBS_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if(response.trim().equals("success")){
-                            //Toast.makeText(SocsActivity.this,response,Toast.LENGTH_LONG).show();
-
-                        }else{
-                            Toast.makeText(SocsActivity.this,response,Toast.LENGTH_LONG).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(SocsActivity.this,error.toString(),Toast.LENGTH_LONG ).show();
-                    }
-                }){
-            @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-                params.put(Constants.KEY_EMAIL, email);
-                params.put(Constants.KEY_SUBS, subs);
-                return params;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+    public boolean storeArrayList_String(ArrayList<String> arrayList, String arrayName, Context mContext) {
+        SharedPreferences prefs = mContext.getSharedPreferences("appPrefs", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(arrayName + "_size", arrayList.size());
+        for (int i = 0; i < arrayList.size(); i++)  //Iterate through the ArrayList
+        {
+            editor.putString(arrayName + "_" + i, arrayList.get(i));  //Store all of the strings from the ArrayList
+        }
+        return editor.commit();
     }
 
+    public ArrayList<String> loadArrayList(String arrayName, Context mContext) {
+        SharedPreferences appPrefs = mContext.getSharedPreferences("appPrefs", 0);
+        int size = appPrefs.getInt(arrayName + "_size", 0);
+        ArrayList<String> array = new ArrayList<String>();
+        for (int i = 0; i < size; i++)
+            array.add(appPrefs.getString(arrayName + "_" + i, "BLANK"));  //Load all of the strings into the ArrayList
+        return array;
+    }
 
 }
 

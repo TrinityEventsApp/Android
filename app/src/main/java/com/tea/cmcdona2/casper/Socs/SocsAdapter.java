@@ -19,6 +19,7 @@ public class SocsAdapter extends ArrayAdapter<SocItem> {
     private Context context;
     private int layoutResourceId;
     private ArrayList<SocItem> data = new ArrayList<SocItem>();
+    public ArrayList<Integer> activeGridPositions = new ArrayList<Integer>();
 
     public int numSocs;
     public boolean[] actives;
@@ -42,7 +43,8 @@ public class SocsAdapter extends ArrayAdapter<SocItem> {
 
 
         if (previouslyLaunched) {
-            actives = loadArray("idsActive", this.getContext());
+            //actives = loadArray("idsActive", this.getContext());
+            activeGridPositions = loadArrayList("activeGridPositions", this.getContext());
 
         }
 
@@ -58,6 +60,10 @@ public class SocsAdapter extends ArrayAdapter<SocItem> {
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();
+        }
+
+        for(int i = 0; i < activeGridPositions.size(); i++) {
+            actives[i] = true;
         }
 
         if (previouslyLaunched) {
@@ -98,6 +104,15 @@ public class SocsAdapter extends ArrayAdapter<SocItem> {
     public int getItemViewType(int position) {
 
         return position;
+    }
+
+    public ArrayList<Integer> loadArrayList(String arrayName, Context mContext) {
+        SharedPreferences appPrefs = mContext.getSharedPreferences("appPrefs", 0);
+        int size = appPrefs.getInt(arrayName + "_size", 0);
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        for (int i = 0; i < size; i++)
+            array.add(appPrefs.getInt(arrayName + i, 0));  //Load all of the strings into the ArrayList
+        return array;
     }
 
 }
