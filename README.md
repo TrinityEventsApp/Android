@@ -1,3 +1,3 @@
 # TEA
 
-A project (app) Trinity students worked on to display events happening in college
+An app that collects info about events from FB
